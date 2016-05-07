@@ -1,0 +1,26 @@
+{
+  "name": "Election",
+  "authors": [
+    "Anandu B Ajith <reach2anandu@gmail.com>"
+  ],
+  "description": "A school election app",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.5",
+    "bootstrap": "^3.3.6",
+    "angular-route": "1.5.5"
+  },
+  "resolutions": {
+    "angular": "1.5.5"
+  }
+}

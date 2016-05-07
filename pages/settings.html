@@ -1,0 +1,18 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Image</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="candidate in candidates">
+		<td editable-text="candidate.name">{{ candidate.name }}</td>
+		<td editable-text="candidate.image">{{ candidate.image }}</td>
+		<td>
+      <button class="btn btn-danger "><i class="glyphicon glyphicon-remove"></i></button>
+   </td>
+	</tr>
+	</tbody>
+</table>
