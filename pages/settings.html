@@ -7,11 +7,11 @@
 		</tr>
 	</thead>
 	<tbody>
-	<tr ng-repeat="candidate in candidates">
+	<tr ng-repeat="(id, candidate) in candidates">
 		<td editable-text="candidate.name">{{ candidate.name }}</td>
 		<td editable-text="candidate.image">{{ candidate.image }}</td>
 		<td>
-      <button class="btn btn-danger " ng-click="settingsController.deleteCandidate(candidate)">
+      <button class="btn btn-danger " ng-click="removeCandidate(id)">
         <i class="glyphicon glyphicon-remove"></i> Delete
       </button>
    </td>
@@ -19,19 +19,22 @@
 	</tbody>
 </table>
 
-<button class="btn btn-large btn-primary" ng-click="showCreateForm()">
+<button class="btn btn-large btn-primary" ng-click="toggleCreateForm()">
   <i class="glyphicon glyphicon-plus"></i> Add Candidate 
 </button>
 
 <div ng-if="createForm">
-  <form ng-submit="addCandidate(newCandidate)" class="row">
+  <form ng-submit="addCandidate(newCandidate)" class="row" novalidate>
     <div class="form-group col-md-5">
-      <input type="text" class="form-control" placeholder="name" id = "newCandidateName"
-                                              ng-model="newCandidate.name">
+      <input type="text" class="form-control" placeholder="name"
+                                              id = "newCandidateName"
+                                              ng-model="newCandidate.name"
+                                              required>
     </div>
     <div class="form-group col-md-5">
       <input type="text" class="form-control" placeholder="image"
-                                              id="newCandidateImage" ng-model="newCandidate.image">
+                                              id="newCandidateImage"
+                                              ng-model="newCandidate.image">
     </div>
 
     <div class="col-md-2">

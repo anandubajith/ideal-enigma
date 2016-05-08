@@ -27,6 +27,7 @@ app.run(function(editableOptions){
 
 app.controller('mainController', function($scope, $firebaseObject) {
   $scope.year = new Date().getFullYear();
+  $scope.frozen = true;
   $scope.candidates = {};
   var ref = new Firebase('https://school-election.firebaseio.com/candidates'),
       syncObject = $firebaseObject(ref);
@@ -57,21 +58,24 @@ app.controller('settingsController', function($scope) {
   $scope.createForm= false;
   var randomID  = Math.random().toString(20).slice(2);
   function addCandidate(newCandidate) {
-    $scope.candidates.push({randomID: $scope.newCandidate});
+    //$scope.candidates.push({randomID: $scope.newCandidate});
     //push to the object
+    $scope.candidates[randomID] = $scope.newCandidate;
+    //$scope.candidates.$save();
 
-    $scope.newCandidate.name  = '';
+
+    //$scope.newCandidate.name  = '';
+    //$scope.newCandidate.image = '';
+    $scope.createForm = false;
   }
 
   function removeCandidate(candidate) {
-    $scope.candidates = $scope.candidates.filter(function(c) {
-      return c._id !== candidate._id;
-    });
+    delete $scope.candidates[candidate];
   }
-  function showCreateForm() {
-    $scope.createForm = true;
+  function toggleCreateForm() {
+    $scope.createForm = $scope.createForm ? false : true;
   }
-  $scope.showCreateForm = showCreateForm;
+  $scope.toggleCreateForm = toggleCreateForm;
   $scope.removeCandidate = removeCandidate;
   $scope.addCandidate = addCandidate;
 
