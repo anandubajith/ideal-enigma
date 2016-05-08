@@ -11,8 +11,11 @@
 		<td editable-text="candidate.name">{{ candidate.name }}</td>
 		<td editable-text="candidate.image">{{ candidate.image }}</td>
 		<td>
-      <button class="btn btn-danger "><i class="glyphicon glyphicon-remove"></i></button>
+      <button class="btn btn-danger " ng-click="deleteCandidate(candidate)"><i class="glyphicon glyphicon-remove"></i></button>
    </td>
 	</tr>
 	</tbody>
 </table>
+
+<button class="btn btn-large btn-primary"> <i class="glyphicon
+glyphicon-plus"></i> Add Candidate </button>

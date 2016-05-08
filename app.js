@@ -56,11 +56,16 @@ app.config(function($routeProvider){
 app.run(function(editableOptions){
   editableOptions.theme = 'bs3';
 });
+
+app.controller('mainController', function($scope) {
+  $scope.year = new Date().getFullYear();
+  $scope.candidates = CANDIDATES;
+});
+
+
 app.controller('electionController', function($scope) {
   // get all the candidates and display them
   // when clicked add an element to the respective array
-  $scope.year = new Date().getFullYear();
-  $scope.candidates = CANDIDATES;
 
 
   function addVote(candidate) {
@@ -74,19 +79,25 @@ app.controller('electionController', function($scope) {
 
 app.controller('resultsController', function($scope){
 
-  $scope.candidates = CANDIDATES;
   // get all the candidates and display them
   // get the length of the respective arrays and display them.
 });
 
 app.controller('settingsController', function($scope) {
-  $scope.candidates = CANDIDATES;
 
   $scope.newCandidate = {};
   function addCandidate(newCandidate) {
     candidates.push($scope.newCandidate);
     $scope.candidate = ''
   }
+
+  function removeCandidate(candidate) {
+    $scope.candidates = $scope.candidates.filter(function(c) {
+      return c._id !== candidate._id;
+    });
+  }
+
+  $scope.removeCandidate = removeCandidate;
   $scope.addCandidate = addCandidate;
   // list all the candidates
   // should be able to edit them
