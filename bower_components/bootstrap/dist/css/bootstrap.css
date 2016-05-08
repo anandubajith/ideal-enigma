@@ -4913,7 +4913,6 @@ a.label:focus {
   background-color: #c9302c;
 }
 .badge {
-  margin-top: 38px;
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
@@ -5252,7 +5251,7 @@ a.thumbnail.active {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 31px 29px;
+  padding: 10px 15px;
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -6521,7 +6520,7 @@ button.close {
   margin-left: auto;
 }
 .pull-right {
-  /* float: right !important; */
+  float: right !important;
 }
 .pull-left {
   float: left !important;
