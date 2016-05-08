@@ -24,3 +24,25 @@
 .card-title {
   margin-bottom: .75rem;
 }
+
+
+
+.result {
+  max-width: 75rem;
+  margin: 1em auto;
+}
+.result h2 {
+  display: inline;
+}
+
+.result img {
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  margin-right: 1em;
+}
+
+.result .badge {
+  font-size: 3em;
+  margin-top: 26px;
+}

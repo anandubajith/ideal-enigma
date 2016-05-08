@@ -1,20 +1,12 @@
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Name</th>
-			<th>Image</th>
-			<th>Votes</th>
-		</tr>
-	</thead>
-	<tbody>
+<div class="page-header">
+  <h1> Results </h1>
+</div>
 
-	<tr ng-repeat="candidate in candidates | orderBy: '-votes'">
-		<th scope="row">{{ candidate.$id }}</th>
-		<td>{{ candidate.name }}</td>
-		<td>{{ candidate.image }}</td>
-		<td>{{ candidate.votes }}</td>
-	</tr>
-	</tbody>
-</table>
+<ul class="list-group result"  >
+ <li class="list-group-item" ng-repeat="candidate in candidates">
+   <img ng-src="{{ candidate.image }}" > 
+   <span class="badge">{{ candidate.votes }}</span>
+   <h2>{{ candidate.name }}</h2>
+ </li>
+</ul>
 
