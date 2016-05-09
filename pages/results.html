@@ -3,7 +3,7 @@
 </div>
 
 <ul class="list-group result"  >
- <li class="list-group-item" ng-repeat="(id,vote) in votes">
+ <li class="list-group-item" ng-repeat="(id,vote) in votes | orderBy:'-votes'">
    <img ng-src="{{ candidates[id].image }}" > 
    <span class="badge">{{ vote }}</span>
    <h2>{{ candidates[id].name}}</h2>
