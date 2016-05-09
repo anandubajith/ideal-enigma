@@ -3,10 +3,13 @@
 </div>
 
 <ul class="list-group result"  >
- <li class="list-group-item" ng-repeat="candidate in candidates">
-   <img ng-src="{{ candidate.image }}" > 
-   <span class="badge">{{ candidate.votes }}</span>
-   <h2>{{ candidate.name }}</h2>
+ <li class="list-group-item" ng-repeat="(id,vote) in votes">
+   <img ng-src="{{ candidates[id].image }}" > 
+   <span class="badge">{{ vote }}</span>
+   <h2>{{ candidates[id].name}}</h2>
  </li>
 </ul>
 
+<pre>
+{{ votes }}
+</pre>

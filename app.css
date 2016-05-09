@@ -59,3 +59,13 @@
   top: 0;
   left: 0;
 }
+
+.editable-click, a.editable-click {
+  border: 0;
+}
+.editable-wrap {
+  margin-top: 8px;
+}
+.table > tbody > tr > td {
+  vertical-align: middle;
+}

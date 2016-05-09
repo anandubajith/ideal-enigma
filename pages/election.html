@@ -1,6 +1,6 @@
 <div class="profile-card col-md-4"
-     ng-repeat="candidate in candidates"
-     ng-click="addVote(candidate)">
+     ng-repeat="(id, candidate) in candidates"
+     ng-click="addVote(id)">
   <img ng-src="{{ candidate.image }}"/>
   <div class="card-block">
     <h4 class="card-title">

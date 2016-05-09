@@ -35,20 +35,41 @@ app.controller('mainController', function($scope, $firebaseObject) {
 });
 
 
-app.controller('electionController', function($scope) {
-  function addVote(candidate) {
-    candidate.votes = candidate.votes + 1;
-    alert(candidate._id + candidate.name + candidate.votes);
+app.controller('electionController', function($scope, $firebaseArray) {
+
+  var ref = new Firebase('https://school-election.firebaseio.com/votes');
+  var list = $firebaseArray(ref);
+
+  function addVote(id) {
+    list.$add(id).then(function(ref) {
+      var id = ref.key();
+      console.log("added record with id " + id);
+      list.$indexFor(id); // returns location in the array
+    });
+
   }
 
   $scope.addVote = addVote;
 });
 
 
-app.controller('resultsController', function($scope){
+app.controller('resultsController', function($scope, $firebaseArray){
+  var ref = new Firebase('https://school-election.firebaseio.com/votes'),
+      list = $firebaseArray(ref),
+      results = {};
 
-  // get all the candidates and display them
-  // get the length of the respective arrays and display them.
+  $scope.votes = {};
+
+  list.$loaded(function(x) {
+    result = x.map(function(y){return y['$value'];});
+    console.log(result);
+    $scope.votes = result.reduce(function(count, val){
+      count[val] = (count[val] || 0 ) + 1;
+      return count;
+    }, {});
+
+  });
+
 });
 
 app.controller('settingsController', function($scope) {
@@ -58,19 +79,13 @@ app.controller('settingsController', function($scope) {
   $scope.createForm= false;
   var randomID  = Math.random().toString(20).slice(2);
   function addCandidate(newCandidate) {
-    //$scope.candidates.push({randomID: $scope.newCandidate});
-    //push to the object
     $scope.candidates[randomID] = $scope.newCandidate;
-    //$scope.candidates.$save();
-
-
-    //$scope.newCandidate.name  = '';
-    //$scope.newCandidate.image = '';
     $scope.createForm = false;
+    randomID = Math.random().toString(20).slice(2);
   }
 
-  function removeCandidate(candidate) {
-    delete $scope.candidates[candidate];
+  function removeCandidate(id) {
+    delete $scope.candidates[id];
   }
   function toggleCreateForm() {
     $scope.createForm = $scope.createForm ? false : true;
@@ -88,6 +103,7 @@ app.directive('headerBar', function() {
     templateUrl: 'header.html'
   };
 });
+
 
 
 })();
