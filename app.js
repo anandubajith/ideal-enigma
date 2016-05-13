@@ -3,7 +3,7 @@
 var app = angular.module('votingMachine', ['firebase', 'ngAnimate']);
 
 app.run(function($rootScope){
-	$rootScope.loggedIn = false;
+	$rootScope.loggedIn = ( localStorage["firebase:session::school-election"] ) || false;
 });
 
 app.controller('mainController' , function($scope, $timeout, Loader, $firebaseObject, $firebaseArray) {
