@@ -1,5 +1,5 @@
 {
-  "name": "Election",
+  "name": "votingMachine",
   "authors": [
     "Anandu B Ajith <reach2anandu@gmail.com>"
   ],
@@ -17,13 +17,9 @@
   ],
   "dependencies": {
     "angular": "1.5.5",
-    "bootstrap": "^3.3.6",
-    "angular-route": "1.5.5",
     "angularfire": "^1.2.0",
     "firebase": "^2.4.2",
-    "angular-xeditable": "^0.1.12"
-  },
-  "resolutions": {
-    "angular": "1.5.5"
+    "normalize-css": "^4.1.1",
+    "angular-animate": "^1.5.5"
   }
 }

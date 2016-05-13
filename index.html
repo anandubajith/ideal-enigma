@@ -1,26 +1,55 @@
 <!doctype html>
-<html ng-app="election">
+<html ng-app="votingMachine" lang="en">
   <head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	   <title>Learning Angular</title>
-	   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-	   <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-     <link rel="stylesheet" href="app.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>votingMachine</title>
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" href="app.css">
+ 	<script src="bower_components/angular/angular.js"></script>
+  	<script src="bower_components/angular-animate/angular-animate.js"></script>
+  	<script src="bower_components/firebase/firebase.js"></script>
+  	<script src="bower_components/angularfire/dist/angularfire.js"></script>
+  	<script src="app.js"></script>
   </head>
   <body ng-controller="mainController">
-    <header-bar></header-bar>
-    <div class="container"> 
-      <div ng-view></div>
-    </div>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-  <script src="bower_components/firebase/firebase.js"></script>
-  <script src="bower_components/angularfire/dist/angularfire.js"></script>
-  <script src="app.js"></script>
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<div data-loader class="loader" ng-class="{'visible':Loader.visible}"></div>
+
+	<div class="container login" ng-controller="AuthCtrl" ng-hide="loggedIn">
+	  <form ng-submit="login()" novalidate>
+	   <input type="email" class="form-control" placeholder="Email" ng-model="email" /> 
+	    <input type="password" class="form-control" placeholder="Password" ng-model="password" />
+	    <button type="submit" >Login</button>
+	  </form>
+	</div>
+
+    <div class="container candidates" ng-show="loggedIn && !modal"> 
+		<div class="card"
+	     	     ng-repeat="(id, candidate) in candidates"
+	             ng-click="showConfirm(id)">
+	  	<img ng-src="{{ candidate.image }}"/>
+	  	<div class="card-block">
+	    		<h4 class="card-title">
+	      			{{ candidate.name }}
+	    		</h4>
+	  	</div>
+		</div>
+	</div>
+
+
+
+	<div class="confirm modal" ng-show="modal">
+		<h3> Confirm Vote </h3>
+		<p>Are you sure you want to vote for <b>{{ candidates[currentId].name }}</b> ? </p>
+		<div class="modal-actions" >
+			<button class="btn vote " ng-click="addVote(currentId)"> yes </button>
+			<button class="btn modal-close" href="#" ng-click="closeModal()">No</button>	
+		</div>	
+	</div>
+
+
+
   </body>
 </html>
