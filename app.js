@@ -20,9 +20,9 @@ app.controller('mainController' , function($scope, $timeout, Loader, $firebaseOb
 
 
   function showConfirm(id) {
-	$scope.modal = true;
+	$scope.currentId = id;
 	Loader.show(true);
-    $scope.currentId = id;
+	$scope.modal = true;	
   }
 
   function resetModal() {
