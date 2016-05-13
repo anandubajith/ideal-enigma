@@ -3,7 +3,7 @@
 var app = angular.module('votingMachine', ['firebase', 'ngAnimate']);
 
 app.run(function($rootScope){
-	$rootScope.loggedIn = ( localStorage["firebase:session::school-election"] ) || false;
+	$rootScope.loggedIn = ( localStorage["firebase:session::school-election"] ) || false; // improve
 });
 
 app.controller('mainController' , function($scope, $timeout, Loader, $firebaseObject, $firebaseArray) {
@@ -66,8 +66,12 @@ app.controller("AuthCtrl", ["$scope","$rootScope", "$firebaseAuth",
       $scope.authData = null;
       $scope.error = null;
       auth.$authWithPassword({email: $scope.email, password: $scope.password})
-		.then(function(authData){ $rootScope.loggedIn = true; })
-		.catch(function(err) { console.log(err);});
+		.then(function(authData){
+			$rootScope.loggedIn = true;
+			window.location.reload(); // temporary workaround ;)
+		}).catch(function(err) {
+			console.log(err);
+		});
     };
   }
 ]);
