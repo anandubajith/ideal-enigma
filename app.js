@@ -25,22 +25,18 @@ app.controller('mainController' , function($scope, $timeout, Loader, $firebaseOb
 	$scope.modal = true;	
   }
 
-  function resetModal() {
-    $scope.modal = false;
-    $scope.currentId = 0;
-  }
-
   function closeModal() {
-    resetModal();
+    $scope.modal = false;
     Loader.show(false);
   }
 
   function addVote(id) {
     votesArray.$add(id).then(function(vote) {
       Loader.show(true);
-	  resetModal();
+	  $scope.modal = false;
 
       $timeout(function(){
+	    $scope.currentId = 0;
         Loader.show(false);
       }, 5000)
   	
@@ -50,7 +46,6 @@ app.controller('mainController' , function($scope, $timeout, Loader, $firebaseOb
 
 
   $scope.addVote = addVote;
-  $scope.resetModal = resetModal;
   $scope.closeModal = closeModal;
   $scope.showConfirm = showConfirm;
  
@@ -68,7 +63,6 @@ app.controller("AuthCtrl", ["$scope","$rootScope", "$firebaseAuth",
       auth.$authWithPassword({email: $scope.email, password: $scope.password})
 		.then(function(authData){
 			$rootScope.loggedIn = true;
-			window.location.reload(); // temporary workaround ;)
 		}).catch(function(err) {
 			console.log(err);
 		});

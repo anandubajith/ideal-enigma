@@ -142,11 +142,9 @@ button:hover {
   -webkit-animation: 2s pulse infinite;
 }
 
-
-
-
-/* when hiding the picture */
-.ng-hide-add         { animation:0.5s bounceOut ease; }
+.ng-hide-add {
+	animation:0.5s bounceOut ease;
+}
 
 @-webkit-keyframes bounceOut {
   20% {
@@ -201,7 +199,3 @@ button:hover {
 
 }
 
-.large {
-	height: 72px;
-	line-height: 72px;
-}

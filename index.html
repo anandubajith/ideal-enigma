@@ -25,7 +25,7 @@
 	  </form>
 	</div>
 
-    <div class="container candidates" ng-show="loggedIn && !modal"> 
+    <div class="container candidates" ng-if="loggedIn" ng-hide="modal"> 
 		<div class="card"
 	     	     ng-repeat="(id, candidate) in candidates"
 	             ng-click="showConfirm(id)">
@@ -40,7 +40,7 @@
 
 
 
-	<div class="confirm modal" ng-show="modal">
+	<div class="confirm modal" ng-if="modal">
 		<h3> Confirm Vote </h3>
 		<p>Are you sure you want to vote for <b>{{ candidates[currentId].name }}</b> ? </p>
 		<div class="modal-actions" >
